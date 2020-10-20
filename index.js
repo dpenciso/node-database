@@ -19,7 +19,6 @@ const Product = require('./products/storeProducts')
 const Manufacturer = require('./products/productManufacturer')
 
 app.post('/products', (req, res) => {
-    console.log(req.query)
     Product.create({
         name: req.query.name,
         category: req.query.category,
