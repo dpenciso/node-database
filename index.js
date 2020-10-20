@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const port = process.env.PORT || 3000
 
 require('dotenv').config();
 
@@ -10,10 +11,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 mongoose.connect(`mongodb+srv://dpenciso:${process.env.PASSWORD}@cluster0.mvqj6.mongodb.net/product?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true})
-
-app.listen(3000, () => {
-    console.log('listening on port 3000')
-})
 
 const Product = require('./products/storeProducts')
 const Manufacturer = require('./products/productManufacturer')
@@ -141,3 +138,5 @@ app.delete('/manufacturers/:id', (req, res) => {
         })
     })
 })
+
+app.listen(port, () => console.log(`Listening on port ${port}...`))
